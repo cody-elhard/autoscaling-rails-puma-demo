@@ -1,11 +1,14 @@
 services:
   rails_app:
     container_name: rails_app
+    # expose 3001, app on port 3000
     ports:
-      - "3001:3001"
+      - "3001:3000"
     build:
-      context: ./rails-app
+      context: ./rails-puma
       dockerfile: Dockerfile
+    environment:
+      SECRET_KEY_BASE: 123
 
   node_exporter:
     image: prom/node-exporter:master
